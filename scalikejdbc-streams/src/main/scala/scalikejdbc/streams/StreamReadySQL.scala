@@ -65,7 +65,7 @@ private[streams] object StreamReadySQL {
 
     // setup required settings to enable cursor operations
     session.connectionAttributes.driverName match {
-      case Some(driver) if driver == "com.mysql.jdbc.Driver" && session.fetchSize.exists(_ > 0) =>
+      case Some(driver) if driver == "com.mysql.cj.jdbc.Driver" && session.fetchSize.exists(_ > 0) =>
         /*
          * MySQL - https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html
          *

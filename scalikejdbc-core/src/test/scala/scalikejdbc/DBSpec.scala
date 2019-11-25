@@ -641,7 +641,7 @@ class DBSpec extends FlatSpec with Matchers with BeforeAndAfter with Settings wi
 
   // https://github.com/scalikejdbc/scalikejdbc/issues/245
   it should "work with no pk table with MySQL" in {
-    if (driverClassName == "com.mysql.jdbc.Driver") {
+    if (driverClassName == "com.mysql.cj.jdbc.Driver") {
       val tableName = s"issue245_${System.currentTimeMillis}"
       try {
         DB autoCommit { implicit s =>
@@ -791,7 +791,7 @@ class DBSpec extends FlatSpec with Matchers with BeforeAndAfter with Settings wi
 
   /*
   it should "work with TimeZone" in {
-    if (driverClassName != "com.mysql.jdbc.Driver") {
+    if (driverClassName != "com.mysql.cj.jdbc.Driver") {
 
       val now = new Date
       val currentTimeZone = TimeZone.getDefault

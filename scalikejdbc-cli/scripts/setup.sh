@@ -169,7 +169,7 @@ def initialize() {
   Option(props.get(profile + ".jdbc.url")).map { obj =>
     val url = obj.toString
     if (url.startsWith("jdbc:postgresql")) { Class.forName("org.postgresql.Driver")
-    } else if (url.startsWith("jdbc:mysql")) { Class.forName("com.mysql.jdbc.Driver")
+    } else if (url.startsWith("jdbc:mysql")) { Class.forName("com.mysql.cj.jdbc.Driver")
     } else if (url.startsWith("jdbc:h2")) { Class.forName("org.h2.Driver")
     } else if (url.startsWith("jdbc:hsqldb")) { Class.forName("org.hsqldb.jdbc.JDBCDriver")
     } else if (url.startsWith("jdbc:derby")) { Class.forName("org.apache.derby.jdbc.EmbeddedDriver")

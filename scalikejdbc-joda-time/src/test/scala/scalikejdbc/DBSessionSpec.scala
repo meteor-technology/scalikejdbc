@@ -359,7 +359,7 @@ class DBSessionSpec extends FlatSpec with Matchers with BeforeAndAfter with Sett
           val after = (stmt: PreparedStatement) => {
             val rs = stmt.getGeneratedKeys
             while (rs.next()) {
-              id = if (driverClassName == "org.h2.Driver" || driverClassName == "com.mysql.jdbc.Driver") rs.getLong(1) else rs.getLong("id")
+              id = if (driverClassName == "org.h2.Driver" || driverClassName == "com.mysql.cj.jdbc.Driver") rs.getLong(1) else rs.getLong("id")
             }
           }
           session.updateWithFilters(true, before, after, "insert into dbsessionspec_genkey (name) values (?)", "xxx")
@@ -430,7 +430,7 @@ class DBSessionSpec extends FlatSpec with Matchers with BeforeAndAfter with Sett
               }
           }
 
-          if (driverClassName == "org.h2.Driver" || driverClassName == "com.mysql.jdbc.Driver") {
+          if (driverClassName == "org.h2.Driver" || driverClassName == "com.mysql.cj.jdbc.Driver") {
             val id1 = SQL("insert into dbsessionspec_update_genkey2 (name) values (?)").bind("xxx").updateAndReturnGeneratedKey.apply()
             id1 should be <= 1L
           } else {

@@ -82,7 +82,7 @@ class DB_MetaDataSpec extends FlatSpec with Matchers with Settings with LogSuppo
           NamedDB(Symbol("default")).getTableNames("%.%"))
       ) {
         // mysql is not support schema
-        if (driverClassName == "com.mysql.jdbc.Driver") {
+        if (driverClassName == "com.mysql.cj.jdbc.Driver") {
           lower(act) should contain allOf ("meta_groups", "meta_members")
         } else {
           lower(act) should contain allOf ("public.meta_groups", "public.meta_members")
@@ -117,7 +117,7 @@ class DB_MetaDataSpec extends FlatSpec with Matchers with Settings with LogSuppo
           NamedDB(Symbol("default")).getTable("META_MEMBERS"),
           NamedDB(Symbol("default")).getTable("meta_members"))
       ) {
-        if (driverClassName == "com.mysql.jdbc.Driver") {
+        if (driverClassName == "com.mysql.cj.jdbc.Driver") {
           lower(act.value.schema) should equal(null)
         } else {
           lower(act.value.schema) should equal("public")
@@ -164,7 +164,7 @@ class DB_MetaDataSpec extends FlatSpec with Matchers with Settings with LogSuppo
 
   it should "retrieve metadata with schemas" in {
     // mysql is not support schema
-    if (driverClassName != "com.mysql.jdbc.Driver") {
+    if (driverClassName != "com.mysql.cj.jdbc.Driver") {
 
       try {
 
@@ -491,7 +491,7 @@ class DB_MetaDataSpec extends FlatSpec with Matchers with Settings with LogSuppo
   }
   it should "get all columns" in {
 
-    if (driverClassName == "com.mysql.jdbc.Driver") {
+    if (driverClassName == "com.mysql.cj.jdbc.Driver") {
       try {
         // There was a bug that MySQL returns all columns of same name tables.
         DB autoCommit { implicit s =>

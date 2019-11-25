@@ -9,7 +9,7 @@ class QueryInterfaceSpec extends FlatSpec with Matchers with DBSettings with SQL
 
   def isH2: Boolean = driverClassName == "org.h2.Driver" || sys.env.get("SCALIKEJDBC_DATABASE").exists(_ == "h2")
 
-  def isMySQL: Boolean = driverClassName == "com.mysql.jdbc.Driver" || sys.env.get("SCALIKEJDBC_DATABASE").exists(_ == "mysql")
+  def isMySQL: Boolean = driverClassName == "com.mysql.cj.jdbc.Driver" || sys.env.get("SCALIKEJDBC_DATABASE").exists(_ == "mysql")
 
   behavior of "QueryInterface"
 
